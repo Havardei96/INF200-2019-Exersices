@@ -18,8 +18,8 @@ def two_dices_throw():
 """
 
 
-def guess_qual_throw(f, g):
-    return f == g
+def guess_qual_throw(throw, guess):
+    return throw == guess
 """checks if sum of dices equals your guess
 """
 
@@ -30,7 +30,7 @@ if __name__ == '__main__':
     throw = two_dices_throw()
     while not false_check and attempts > 0:
         guess = your_guess()
-        false_check= guess_qual_throw(throw, guess)
+        false_check = guess_qual_throw(throw, guess)
         if not false_check:
             print('Wrong, try again!')
             attempts -= 1
