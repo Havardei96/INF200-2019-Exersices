@@ -1,7 +1,6 @@
 __author__ = 'havard eig'
 __email__ = 'havardei@nmbu.no'
 
-
 from random import randint
 
 
@@ -14,14 +13,17 @@ def your_guess():
 
 def two_dices_throw():
     return randint(1, 6) + randint(1, 6)
+
+
 """ two dices thrown and added together
 """
 
 
 def guess_qual_throw(throw, guess):
+    """checks if sum of dices equals your guess
+    """
     return throw == guess
-"""checks if sum of dices equals your guess
-"""
+
 
 
 if __name__ == '__main__':
