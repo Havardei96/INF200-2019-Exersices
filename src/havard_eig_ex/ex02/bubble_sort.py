@@ -1,6 +1,12 @@
-def bubble_sort(data):
-    data_list = list(data)
-    for i in range(len(data_list))
+def bubble_sort(dataa):
+    data_list = list(dataa)
+    for i in range(len(data_list) - 1, 0, -1):
+        for j in range(i):
+            if data_list[j] > data_list[j + 1]:
+                replace_temp = data_list[j]
+                data_list[j] = data_list[j + 1]
+                data_list[j + 1] = replace_temp
+    return data_list
 
 
 if __name__ == "__main__":
