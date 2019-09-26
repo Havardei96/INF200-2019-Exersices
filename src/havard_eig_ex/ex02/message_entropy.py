@@ -23,7 +23,7 @@ def entropy(message):
         freq_letter[ord(key)] = value/tot_char
     for value in freq_letter.values():
         entropy_ += value * math.log2(value)
-        entropy_ = entropy_ * -1
+    entropy_ = entropy_ * -1
     return entropy_
 
 
