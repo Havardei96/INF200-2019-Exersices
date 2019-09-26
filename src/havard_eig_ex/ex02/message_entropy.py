@@ -20,10 +20,10 @@ def entropy(message):
     freq_letter = {}
     for key, value in char_freq.items():
         freq_letter[ord(key)] = value/tot_char
-    entropy = 0
+    entropy2: int = 0
     for value in freq_letter.values():
-        entropy += value * math.log2(value)
-    return entropy
+        entropy2 += value * math.log2(value)
+    return entropy2
 
 
 if __name__ == "__main__":
