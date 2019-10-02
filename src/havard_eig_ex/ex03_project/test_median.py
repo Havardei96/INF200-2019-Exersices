@@ -46,3 +46,10 @@ def test_list_with_reverse_ordered_elements():
 
 def test_list_with_unordered_elements():
     pass
+
+
+def test_median_rasis_value_error_on_empty_list():
+    """A test checking that requesting the median of an empty list raises a
+    ValueError exception"""
+    with pytest.raises(ValueError):
+        median([])
