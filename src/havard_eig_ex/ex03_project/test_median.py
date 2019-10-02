@@ -69,4 +69,5 @@ def test_original_unchanged():
 def test_works_median_with_tuples():
     """A test that ensures that the median function works for tuples as
     well as lists"""
-    pass
+    tuple = {1, 2, 3}
+    assert median(tuple) == 2
