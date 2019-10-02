@@ -42,11 +42,13 @@ def test_list_with_ordered_elements():
 
 
 def test_list_with_reverse_ordered_elements():
-    pass
+    data = [3, 2, 1]
+    assert median(data) == 2
 
 
 def test_list_with_unordered_elements():
-    pass
+    data = [1, 3, 2]
+    assert median(data) == 2
 
 
 def test_median_rasis_value_error_on_empty_list():
