@@ -37,9 +37,8 @@ def test_median_even_number():
 
 
 def test_list_with_ordered_elements():
-    data = [4, 2, 3, 1]
-    data_ordered = sorted(data)
-    assert median(data) == median(data_ordered)
+    data = [1, 2, 3]
+    assert median(data) == 2
 
 
 def test_list_with_reverse_ordered_elements():
