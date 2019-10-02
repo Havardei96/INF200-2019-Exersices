@@ -53,3 +53,9 @@ def test_median_rasis_value_error_on_empty_list():
     ValueError exception"""
     with pytest.raises(ValueError):
         median([])
+
+
+def test_original_unchanged():
+    """A test that ensures that the median function leaves the original
+    data unchanged"""
+    pass
