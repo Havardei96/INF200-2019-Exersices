@@ -61,7 +61,9 @@ def test_median_rasis_value_error_on_empty_list():
 def test_original_unchanged():
     """A test that ensures that the median function leaves the original
     data unchanged"""
-    pass
+    data = [1, 2, 3]
+    median_extracted = median(data)
+    assert data == [1, 2, 3] and median_extracted == 2
 
 
 def test_works_median_with_tuples():
