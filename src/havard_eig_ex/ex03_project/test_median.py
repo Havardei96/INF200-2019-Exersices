@@ -34,3 +34,7 @@ def test_median_even_number():
     length of a even number"""
     data = [1, 2, 3, 4]
     assert median(data) == 2.5
+
+
+def test_list_with_ordered_elements():
+    pass
