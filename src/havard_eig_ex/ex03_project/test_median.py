@@ -59,3 +59,9 @@ def test_original_unchanged():
     """A test that ensures that the median function leaves the original
     data unchanged"""
     pass
+
+
+def test_works_median_with_tuples():
+    """A test that ensures that the median function works for tuples as
+    well as lists"""
+    pass
