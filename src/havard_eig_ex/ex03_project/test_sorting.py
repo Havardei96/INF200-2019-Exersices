@@ -15,17 +15,8 @@ def bubble_sort(dataa):
     return data_list
 
 
-if __name__ == "__main__":
-    for data in ((),
-                 (1,),
-                 (1, 3, 8, 12),
-                 (12, 8, 3, 1),
-                 (8, 3, 12, 1)):
-        print('{!s:>15} --> {!s:>15}'.format(data, bubble_sort(data)))
-
-
 def test_empty():
-        """Test that the sorting function works for empty list"""
+    """Test that the sorting function works for empty list"""
     assert bubble_sort([]) == []
 
 
@@ -82,7 +73,7 @@ def test_sort_reversed():
 
 def test_sort_all_equal():
     """Test that sorting handles data with identical elements."""
-    pass
+    assert
 
 
 def test_sorting():
