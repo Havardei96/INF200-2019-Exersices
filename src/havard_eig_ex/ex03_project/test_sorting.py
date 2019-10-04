@@ -4,8 +4,11 @@ __author__ = 'Håvard Brobakken Eig'
 __email__ = 'havardei@nmbu.no'
 
 
-def bubble_sort(dataa):
-    data_list = list(dataa)
+from hypothesis import given, strategies
+
+
+def bubble_sort(data):
+    data_list = list(data)
     for i in range(len(data_list) - 1, 0, -1):
         for j in range(i):
             if data_list[j] > data_list[j + 1]:
@@ -59,9 +62,9 @@ def test_original_unchanged():
 def test_sort_sorted():
     """Test that sorting works on sorted data."""
     data = [3, 2, 1]
-    sorted = bubble_sort(data)
-    sort_sorted = bubble_sort(sorted)
-    assert sort_sorted == sorted
+    sorted_data = bubble_sort(data)
+    sort_sorted = bubble_sort(sorted_data)
+    assert sort_sorted == sorted_data
 
 
 def test_sort_reversed():
@@ -77,7 +80,8 @@ def test_sort_all_equal():
     assert data == sorted_data
 
 
-def test_sorting():
+@given(strategies.lists(strategies.integers()))
+def test_sorting(example_list):
     """
     Test sorting for various test cases.
 
@@ -85,4 +89,4 @@ def test_sorting():
     ensure that they are sorted correctly. These could be lists of
     numbers of different length or lists of strings.
     """
-    pass
+    assert bubble_sort(example_list) == sorted(example_list)
