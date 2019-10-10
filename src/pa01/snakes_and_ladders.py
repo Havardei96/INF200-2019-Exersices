@@ -27,7 +27,6 @@ def play_one_player():
 
 
 def single_game(num_players):
-
     list_plays = []
     for player in range(num_players):
         test = play_one_player()
