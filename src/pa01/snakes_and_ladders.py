@@ -1,8 +1,10 @@
+
+
+__author__ = 'Håvard Brobakken Eig, Olav Vikøren Espenes'
+__email__ = 'havardei@nmbu.no, olavzzz@bbc.bbc'
+
+
 import random
-
-
-def roll_dice():
-    return random.randint(1, 6)
 
 
 def snakes_ladder(position):
@@ -18,30 +20,20 @@ def play_one_player():
     position = 0
     moves = 0
     while position <= 90:
-        position = position + roll_dice()
+        position = position + random.randint(1, 6)
         position = snakes_ladder(position)
         moves += 1
     return moves
 
 
 def single_game(num_players):
-    while playing
-        for player in range(num_players):
-            play_one_player()
 
-    """
-    Returns duration of single game.
-
-    Arguments
-    ---------
-    num_players : int
-        Number of players in the game
-
-    Returns
-    -------
-    num_moves : int
-        Number of moves the winning player needed to reach the goal
-    """
+    list_plays = []
+    for player in range(num_players):
+        test = play_one_player()
+        list_plays.append(test)
+    winning_moves = min(list_plays)
+    return winning_moves
 
 def multiple_games(num_games, num_players):
     """
@@ -59,6 +51,7 @@ def multiple_games(num_games, num_players):
     num_moves : list
         List with the numbedr of moves needed in each game.
     """
+    pass
 
 def multi_game_experiment(num_games, num_players, seed):
     """
@@ -78,3 +71,4 @@ def multi_game_experiment(num_games, num_players, seed):
     num_moves : list
         List with the numbedr of moves needed in each game.
     """
+    pass
