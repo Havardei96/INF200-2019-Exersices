@@ -25,8 +25,9 @@ def play_one_player():
 
 
 def single_game(num_players):
-    for player in range(num_players):
-        play_one_player()
+    while playing
+        for player in range(num_players):
+            play_one_player()
 
     """
     Returns duration of single game.
