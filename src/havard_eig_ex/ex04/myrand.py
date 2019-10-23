@@ -20,11 +20,11 @@ class LCGRand:
 class ListRand:
     def __init__(self, numbers):
         self.numbers = numbers
-        self.calls = 0
+        self.count_list = 0
 
     def rand(self):
-        self.calls += 1
-        if self.calls < len(self.numbers):
+        self.count_list += 1
+        if self.count_list > len(self.numbers):
             raise RuntimeError('End of list error')
         else:
-            return self.numbers(self.calls-1)
+            return self.numbers[self.count_list-1]
