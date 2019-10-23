@@ -12,7 +12,7 @@ class LCGRand:
     def rand(self):
         a = 7**5
         m = 2**31-1
-        self.current = (a * self.current) % m
+        self.current = (a * self.seed) % m
         self.seed = self.current
         return self.current
 
