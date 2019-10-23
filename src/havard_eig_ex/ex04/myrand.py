@@ -28,3 +28,11 @@ class ListRand:
             raise RuntimeError('End of list error')
         else:
             return self.numbers[self.count_list-1]
+
+
+if __name__ == "__main__":
+    list_test = ListRand([1, 3, 5, 6])
+    LCG = LCGRand(6)
+    for _ in range(4):
+        print(list_test.rand())
+        print(LCG.rand())
