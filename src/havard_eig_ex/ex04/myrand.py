@@ -9,7 +9,6 @@ class LCGRand:
         self.seed = seed
         self.current = 0
 
-
     def rand(self):
         a = 7**5
         m = 2**31-1
@@ -22,7 +21,6 @@ class ListRand:
     def __init__(self, numbers):
         self.numbers = numbers
         self.calls = 0
-
 
     def rand(self):
         self.calls += 1
