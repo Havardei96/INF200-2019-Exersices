@@ -16,6 +16,7 @@ class BoundedWalker(Walker):
         super().__init__(start, home)
         self.left = left_limit
         self.right = right_limit
+        self.position = start
 
     def move(self):
         super().move()
