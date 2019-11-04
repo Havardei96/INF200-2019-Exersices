@@ -13,17 +13,11 @@ class Walker:
         self.moves = 0
 
     def move(self):
+        self.position += 2 * random.randint(0, 1) - 1
         self.moves += 1
-        if random.randint(0, 1) == 1:
-            self.position += 1
-        else:
-            self.position -= 1
 
     def is_at_home(self):
-        if self.position == self.home:
-            return True
-        else:
-            return False
+        return self.position == self.home
 
     def get_position(self):
         return self.position
@@ -33,43 +27,27 @@ class Walker:
 
 
 class Simulation:
-    def __init__(self, start, home, seed):
-        """
-        Initialise the simulation
 
-        Arguments
-        ---------
-        start : int
-            The walker's initial position
-        home : int
-            The walk ends when the walker reaches home
-        seed : int
-            Random generator seed
-        """
+    def __init__(self, start, home, seed):
+        self.start = start
+        self.home = home
+        random.seed(seed)
 
     def single_walk(self):
-        """
-        Simulate single walk from start to home, returning number of steps.
-
-        Returns
-        -------
-        int
-            The number of steps taken
-        """
+        walker = Walker(self.start, self.home)
+        while not walker.is_at_home():
+            walker.move()
+        return walker.get_steps()
 
     def run_simulation(self, num_walks):
-        """
-        Run a set of walks, returns list of number of steps taken.
-
-        Arguments
-        ---------
-        num_walks : int
-            The number of walks to simulate
-
-        Returns
-        -------
-        list[int]
-            List with the number of steps per walk
-        """
+        return [self.single_walk() for _ in range(num_walks)]
 
 
+if __name__ == '__main__':
+    print(Simulation(0, 10, 12345).run_simulation(20))
+    print(Simulation(0, 10, 12345).run_simulation(20))
+    print(Simulation(0, 10, 54321).run_simulation(20))
+
+    print(Simulation(10, 0, 12345).run_simulation(20))
+    print(Simulation(10, 0, 12345).run_simulation(20))
+    print(Simulation(10, 0, 54321).run_simulation(20))
