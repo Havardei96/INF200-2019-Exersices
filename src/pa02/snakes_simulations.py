@@ -10,38 +10,38 @@ class Board:
     winning_position = 90
     def __init__(self, ladders=None, snakes=None, winning_position=None):
         if ladders is None:
-            ladders = Board.ladders
+            self.ladders = Board.ladders
         if snakes is None:
-            snakes = Board.snakes
-        if winning_position is None:
-            winning_position = Board.winning_position
-        for start, destination in ladders:
+            self.snakes = Board.snakes
+        for start, destination in self.ladders:
             if destination <= start:
                 raise ValueError('wrong ladders value')
-        for start, destination in snakes:
+        for start, destination in self.snakes:
             if destination >= start:
                 raise ValueError('wrong snake value')
         self.snakes_and_ladders = {start: end
                                    for start, end in snakes + ladders}
-        self.winning_position = Board.winning_position if goal is None
-            else goal
+        self.winning_position =
+            Board.winning_position if self.winning_position is None
+            else winning_position
 
-        if self.winning_position <= 0
+        if self.winning_position <= 0:
             raise ValueError('Wrong goal value. Input must be above'
                              'start position')
 
     def goal_reached(self, position):
-        return position >= winning_position
+        return position >= self.winning_position
 
     def position_adjustment(self, position):
-        if position in snakes:
-            num_moves = snakes[position]-position
+        if position in self.snakes:
+            num_moves = self.snakes[position]-position
             return num_moves
-        elif position in ladder:
-            num_moves = ladder[position]-position
+        elif position in self.ladders:
+            num_moves = self.ladders[position]-position
             return num_moves
-        else
+        else:
             return 0
+
 
 class Player:
 
