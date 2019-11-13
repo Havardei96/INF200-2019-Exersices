@@ -23,9 +23,31 @@ class Board:
                 raise ValueError('wrong snake value')
         self.snakes_and_ladders = {start: end
                                    for start, end in snakes + ladders}
+        self.winning_position = Board.winning_position if goal is None
+            else goal
 
-    def goal_reached(self):
-        pass
+        if self.winning_position <= 0
+            raise ValueError('Wrong goal value. Input must be above'
+                             'start position')
 
-    def position_adjustment(self):
-        pass
+    def goal_reached(self, position):
+        return position >= winning_position
+
+    def position_adjustment(self, position):
+        if position in snakes:
+            num_moves = snakes[position]-position
+            return num_moves
+        elif position in ladder:
+            num_moves = ladder[position]-position
+            return num_moves
+        else
+            return 0
+
+class Player:
+
+    def __init__(self, board):
+        self.board = board
+        self.position = 0
+        self.num_of_moves = 0
+
+
