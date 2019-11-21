@@ -82,24 +82,30 @@ class LazyPlayer(Player):
         adjustment = self._board.position_adjustment(self.position)
         self.position += adjustment
         self.climbed_in_last_move = adjustment > 0
-        self.number_of_moves += 1
+        self.num_moves += 1
 
         
 class Simulation:
-
     def __init__(self, player_field, board=None, seed=1234567,
                  randomize_players=False):
-
         self._player_field = player_field
         self._player_types = frozenset(pc.__name__ for pc in player_field)
         self._board = board if board is not None else Board()
         self._results = []
         self._randomize = randomize_players
-
         random.seed(seed)
 
+    def single_game(self):
+        players = [player(self._board) for player in self._player_field]
+        if self._randomize:
+            random.shuffle(players)
 
+        while True:
+            for player in players:
+                player.move()
+                if self._board.goal_reached(player.position):
+                    return player.number_of_moves, type(player).__name__
 
-
-
-
+    def run_simulation(self, num_games):
+        for _ in range(num_games):
+            self._results.append(self.single_game())
