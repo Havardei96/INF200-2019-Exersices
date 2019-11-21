@@ -42,11 +42,16 @@ class Board:
 
 
 class Player:
+    """
+    Defining game for single player.
+    """
     def __init__(self, board):
         self._board = board
         self.position = 0
         self.num_moves = 0
-
+    """
+    Moves player forward to new position
+    """
     def move(self):
         self.position += random.randint(1, 6)
         self.position += self._board.position_adjustment(self.position)
@@ -54,6 +59,10 @@ class Player:
 
 
 class ResilientPlayer(Player):
+    """
+    Adding player that makes extra effort to come back in the game after
+    getting taken by a snake.
+    """
     def __init__(self, board, extra_steps=1):
         super().__init__(board)
         self.extra_steps = extra_steps
@@ -69,7 +78,9 @@ class ResilientPlayer(Player):
 
 
 class LazyPlayer(Player):
-
+    """
+    Player using less effort after climbing a ladder.
+    """
     def __init__(self, board, dropped_steps=1):
         super().__init__(board)
         self.dropped_steps = dropped_steps
@@ -85,6 +96,9 @@ class LazyPlayer(Player):
 
         
 class Simulation:
+    """
+    Simulates a game of Snakes and Ladders.
+    """
     def __init__(self, player_field, board=None, seed=1234567,
                  randomize_players=False):
         self._player_field = player_field
