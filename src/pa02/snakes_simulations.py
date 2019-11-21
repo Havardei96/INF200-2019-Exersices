@@ -109,3 +109,21 @@ class Simulation:
     def run_simulation(self, num_games):
         for _ in range(num_games):
             self._results.append(self.single_game())
+
+ def get_results(self):
+        return self._results
+
+    def players_per_type(self):
+        return {player_type.__name__:
+                    self._player_field.count(player_type)
+                for player_type in frozenset(self._player_field)}
+
+    def winners_per_type(self):
+        winner_types = list(zip(*self._results))[1]
+        return {player_type: winner_types.count(player_type)
+                for player_type in self._player_types}
+
+    def durations_per_type(self):
+        return {player_type: [d for d, t in self._results if t == player_type]
+                for player_type in self._player_types}
+
