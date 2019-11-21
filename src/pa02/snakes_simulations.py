@@ -50,4 +50,10 @@ class Player:
         self.position = 0
         self.num_of_moves = 0
 
+    def move(self):
+
+    self.position += random.randint(1, 6)
+    self.position += self._board.position_adjustment(self.position)
+    self.number_of_moves += 1
+
 
