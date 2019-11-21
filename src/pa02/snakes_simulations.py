@@ -7,39 +7,36 @@ import random
 
 
 class Board:
-    ladders = {1: 40, 8: 10, 36: 52, 43: 62, 49: 79, 65: 82, 68: 85}
-    snakes = {24: 5, 33: 3, 42: 30, 56: 37, 64: 27, 74: 12, 87: 70}
-    winning_position = 90
-
-    def __init__(self, ladders=None, snakes=None, winning_position=None):
-        if ladders is None:
-            seclf.ladders = Board.ladders
-        if snakes is None:
-            self.snakes = Board.snakes
-        for start, destination in self.ladders:
-            if destination <= start:
-                raise ValueError('wrong ladders value')
-        for start, destination in self.snakes:
-            if destination >= start:
-                raise ValueError('wrong snake value')
-        self.snakes_and_ladders = {start: end
-                                   for start, end in snakes + ladders}
-        self.winning_position = Board.winning_position if self.winning_position is None else winning_position
-
-        if self.winning_position <= 0:
-            raise ValueError('Wrong goal value. Input must be above'
-                             'start position')
+    """
+    Defining the board with its snakes, ladders and the goal.
+    """
+    def __init__(self, *args, **kwargs):
+        self.extra = args, kwargs
+        self.ladders = {1: 40, 8: 10, 36: 52, 43: 62, 49: 79, 65: 82, 68: 85}
+        self.snakes = {25: 5, 33: 3, 42: 30, 56: 37, 64: 27, 74: 12, 87: 70}
+        self.resilient_move = False
+        self.lazy_move = False
+        self.goal = 90
 
     def goal_reached(self, position):
-        return position >= self.winning_position
+        """
+        Returns true if a player has reached or moved beyond the goal.
+        """
+        if position >= self.goal:
+            return True
+        return False
 
     def position_adjustment(self, position):
-        if position in self.snakes:
-            num_moves = self.snakes[position]-position
-            return num_moves
-        elif position in self.ladders:
-            num_moves = self.ladders[position]-position
-            return num_moves
+        """
+        Returns the number of positions the player must move forward or
+        backward in case of a ladder or a snake.
+        """
+        if position in self.snakes.keys():
+            self.resilient_move = True
+            return self.snakes[position] - position
+        elif position in self.ladders.keys():
+            self.lazy_move = True
+            return self.ladders[position] - position
         else:
             return 0
 
@@ -70,6 +67,39 @@ class ResilientPlayer(Player):
         self.position += adjustment
         self.went_down_in_last_move = adjustment < 0
         self.num_moves += 1
+
+
+class LazyPlayer(Player):
+
+    def __init__(self, board, dropped_steps=1):
+        super().__init__(board)
+        self.dropped_steps = dropped_steps
+        self.climbed_in_last_move = False
+
+    def move(self):
+        dropped = self.dropped_steps if self.climbed_in_last_move else 0
+        self.position += max(0, random.randint(1, 6) - dropped)
+        adjustment = self._board.position_adjustment(self.position)
+        self.position += adjustment
+        self.climbed_in_last_move = adjustment > 0
+        self.number_of_moves += 1
+
+        
+class Simulation:
+
+    def __init__(self, player_field, board=None, seed=1234567,
+                 randomize_players=False):
+
+        self._player_field = player_field
+        self._player_types = frozenset(pc.__name__ for pc in player_field)
+        self._board = board if board is not None else Board()
+        self._results = []
+        self._randomize = randomize_players
+
+        random.seed(seed)
+
+
+
 
 
 
