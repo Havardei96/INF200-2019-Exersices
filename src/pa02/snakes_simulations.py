@@ -104,18 +104,18 @@ class Simulation:
             for player in players:
                 player.move()
                 if self._board.goal_reached(player.position):
-                    return player.number_of_moves, type(player).__name__
+                    return player.num_moves, type(player).__name__
 
     def run_simulation(self, num_games):
         for _ in range(num_games):
             self._results.append(self.single_game())
 
- def get_results(self):
+    def get_results(self):
         return self._results
 
     def players_per_type(self):
         return {player_type.__name__:
-                    self._player_field.count(player_type)
+                self._player_field.count(player_type)
                 for player_type in frozenset(self._player_field)}
 
     def winners_per_type(self):
@@ -127,3 +127,13 @@ class Simulation:
         return {player_type: [d for d, t in self._results if t == player_type]
                 for player_type in self._player_types}
 
+
+if __name__ == "__main__":
+    testsim = Simulation(
+        [Player, ResilientPlayer, LazyPlayer, ResilientPlayer], seed=69
+    )
+    testsim.run_simulation(10)
+    print(testsim.get_results())
+    print(testsim.winners_per_type())
+    print(testsim.durations_per_type())
+    print(testsim.players_per_type())
