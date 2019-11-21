@@ -4,7 +4,6 @@ __author__ = 'Håvard Brobakken Eig, Olav vikøren Espenes '
 __email__ = 'havardei@nmbu.no, olaves@nmbu.no'
 
 import snakes_simulations as cs
-import pytest
 
 
 def test_winning_numbers():

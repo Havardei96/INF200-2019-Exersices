@@ -42,7 +42,6 @@ class Board:
 
 
 class Player:
-
     def __init__(self, board):
         self._board = board
         self.position = 0
